@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LeadFlow CRM</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="displayLeads()">
+
+<div class="d-flex">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar p-3">
+
+<h4 class="text-white">LeadFlow</h4>
+
+<ul class="nav flex-column mt-4">
+
+<li class="nav-item">
+<a class="nav-link text-white" href="#">Dashboard</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link text-white" href="#">Leads</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link text-white" href="#">Analytics</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link text-white" onclick="toggleDarkMode()">Dark Mode</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link text-white" onclick="logout()">Logout</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content p-4 w-100">
+
+<h2 class="mb-4">CRM Dashboard</h2>
+
+<!-- STATS CARDS -->
+
+<div class="row mb-4">
+
+<div class="col-md-3">
+<div class="card text-center">
+<div class="card-body">
+<h6>Total Leads</h6>
+<h3 id="totalLeads">0</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center">
+<div class="card-body">
+<h6>New Leads</h6>
+<h3 id="newLeads">0</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center">
+<div class="card-body">
+<h6>Won Leads</h6>
+<h3 id="wonLeads">0</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center">
+<div class="card-body">
+<h6>Lost Leads</h6>
+<h3 id="lostLeads">0</h3>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- CHART -->
+
+<div class="card mb-4">
+
+<div class="card-body">
+
+<h5>Lead Analytics</h5>
+
+<canvas id="leadChart"></canvas>
+
+</div>
+
+</div>
+
+<!-- SEARCH + FILTER + EXPORT -->
+
+<div class="row mb-3">
+
+<div class="col-md-4">
+<input type="text"
+class="form-control"
+placeholder="Search Lead..."
+id="searchInput"
+onkeyup="searchLeads()">
+</div>
+
+<div class="col-md-3">
+
+<select
+class="form-select"
+id="statusFilter"
+onchange="filterLeads()">
+
+<option value="All">All Status</option>
+<option value="New">New</option>
+<option value="Contacted">Contacted</option>
+<option value="Qualified">Qualified</option>
+<option value="Won">Won</option>
+<option value="Lost">Lost</option>
+
+</select>
+
+</div>
+
+<div class="col-md-3">
+
+<button
+class="btn btn-success w-100"
+onclick="exportToExcel()">
+
+Export Excel
+
+</button>
+
+</div>
+
+</div>
+
+<!-- ADD LEAD BUTTON -->
+
+<button
+class="btn btn-primary mb-3"
+data-bs-toggle="modal"
+data-bs-target="#leadModal"
+onclick="prepareAdd()">
+
+Add Lead
+
+</button>
+
+<!-- TABLE -->
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Company</th>
+<th>Status</th>
+<th>Follow Up</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="leadTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- ADD LEAD MODAL -->
+
+<div class="modal fade" id="leadModal">
+
+<div class="modal-dialog">
+
+<div class="modal-content">
+
+<div class="modal-header">
+
+<h5 class="modal-title">Add Lead</h5>
+
+<button class="btn-close" data-bs-dismiss="modal"></button>
+
+</div>
+
+<div class="modal-body">
+
+<input type="hidden" id="editIndex">
+
+<input
+type="text"
+id="name"
+class="form-control mb-2"
+placeholder="Name">
+
+<input
+type="email"
+id="email"
+class="form-control mb-2"
+placeholder="Email">
+
+<input
+type="text"
+id="phone"
+class="form-control mb-2"
+placeholder="Phone">
+
+<input
+type="text"
+id="company"
+class="form-control mb-2"
+placeholder="Company">
+
+<select
+id="status"
+class="form-select mb-2">
+
+<option>New</option>
+<option>Contacted</option>
+<option>Qualified</option>
+<option>Won</option>
+<option>Lost</option>
+
+</select>
+
+<!-- FOLLOW UP DATE -->
+
+<label class="mb-1">Follow Up Date</label>
+
+<input
+type="date"
+id="followup"
+class="form-control mb-3">
+
+<button
+class="btn btn-success w-100"
+onclick="saveLead()">
+
+Save Lead
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="script.js"></script>
+
+<script src="dashboard.js"></script>
+
+<script>
+
+if(localStorage.getItem("loggedIn")!=="true"){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+/* GENERAL */
+
+body{
+    margin:0;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    background:#f4f6f9;
+    }
+    
+    
+    /* LOGIN PAGE */
+    
+    .login-page{
+    background:linear-gradient(135deg,#4f46e5,#6366f1);
+    }
+    
+    .login-page .card{
+    border:none;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    
+    /* SIDEBAR */
+    
+    .sidebar{
+    width:230px;
+    height:100vh;
+    background:#111827;
+    position:fixed;
+    left:0;
+    top:0;
+    }
+    
+    .sidebar h4{
+    text-align:center;
+    margin-top:10px;
+    }
+    
+    .sidebar .nav-link{
+    padding:12px;
+    font-size:15px;
+    transition:0.3s;
+    }
+    
+    .sidebar .nav-link:hover{
+    background:#1f2937;
+    border-radius:5px;
+    }
+    
+    
+    /* MAIN CONTENT */
+    
+    .main-content{
+    margin-left:230px;
+    background:#f4f6f9;
+    min-height:100vh;
+    }
+    
+    
+    /* DASHBOARD CARDS */
+    
+    .card{
+    border:none;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    transition:0.3s;
+    }
+    
+    .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+    }
+    
+    .card h6{
+    color:#777;
+    }
+    
+    .card h3{
+    font-weight:600;
+    }
+    
+    
+    /* TABLE */
+    
+    .table{
+    background:white;
+    border-radius:8px;
+    overflow:hidden;
+    }
+    
+    .table th{
+    text-align:center;
+    }
+    
+    .table td{
+    text-align:center;
+    vertical-align:middle;
+    }
+    
+    
+    /* BUTTONS */
+    
+    .btn{
+    border-radius:6px;
+    font-size:14px;
+    }
+    
+    .btn-primary{
+    background:#4f46e5;
+    border:none;
+    }
+    
+    .btn-primary:hover{
+    background:#4338ca;
+    }
+    
+    
+    /* BADGES */
+    
+    .badge{
+    font-size:12px;
+    padding:6px 10px;
+    }
+    
+    
+    /* MODAL */
+    
+    .modal-content{
+    border-radius:10px;
+    border:none;
+    }
+    
+    
+    /* FORM INPUTS */
+    
+    .form-control{
+    border-radius:6px;
+    }
+    
+    .form-select{
+    border-radius:6px;
+    }
+    
+    
+    /* CHART CARD */
+    
+    canvas{
+    max-height:300px;
+    }
+    
+    
+    /* MOBILE RESPONSIVE */
+    
+    @media(max-width:768px){
+    
+    .sidebar{
+    width:180px;
+    }
+    
+    .main-content{
+    margin-left:180px;
+    }
+    
+    .card{
+    margin-bottom:15px;
+    }
+    
+    }
+
+    /* SEARCH BAR */
+
+#searchInput{
+    border-radius:6px;
+    }
+    
+    
+    /* FILTER DROPDOWN */
+    
+    #statusFilter{
+    border-radius:6px;
+    }
+    
+    
+    /* DARK MODE */
+    
+    .dark-mode{
+    background:#0f172a;
+    color:#e5e7eb;
+    }
+    
+    
+    .dark-mode .main-content{
+    background:#0f172a;
+    }
+    
+    
+    .dark-mode .card{
+    background:#1e293b;
+    color:white;
+    }
+    
+    
+    .dark-mode .table{
+    background:#1e293b;
+    color:white;
+    }
+    
+    
+    .dark-mode .table thead{
+    background:#111827;
+    color:white;
+    }
+    
+    
+    .dark-mode .modal-content{
+    background:#1e293b;
+    color:white;
+    }
+    
+    
+    .dark-mode .form-control,
+    .dark-mode .form-select{
+    background:#0f172a;
+    color:white;
+    border:1px solid #374151;
+    }
+    
+    
+    .dark-mode .btn-primary{
+    background:#6366f1;
+    }
+    
+    
+    /* FOLLOW UP DATE */
+    
+    input[type="date"]{
+    border-radius:6px;
+    }
